@@ -18,11 +18,11 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            color: rgba(255, 40, 42, 0.98);
+            color: rgba(255, 22, 53, 0.98);
             font-family: 'Nunito', sans-serif;
             font-weight: 200;
-            height: 100vh;
-            margin: 0;
+            height: 110vh;
+            margin: 10px;
         }
         .full-height {
             height: 100vh;
@@ -38,7 +38,7 @@
         .top-right {
             position: absolute;
             right: 10px;
-            top: 18px;
+            top: 30px;
         }
         .content {
             text-align: center;
@@ -103,7 +103,7 @@
 
 
 
-                <a href="https://github.com/thbappy7706" style="font-size: 28px;font-family: 'Times New Roman';color: darkblue">Contact</a>
+
         </div>
         @endif
 

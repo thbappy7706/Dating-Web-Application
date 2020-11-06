@@ -4976,6 +4976,7 @@ input[type=button].btn-block {
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
+    background: #0a4bff;
 }
 
 .card-title {
@@ -5002,7 +5003,8 @@ input[type=button].btn-block {
 .card-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: skyblue;
+    color: red;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -6226,8 +6228,7 @@ a.close.disabled {
 .modal-dialog-centered::before {
   display: block;
   height: calc(100vh - 1rem);
-  height: -webkit-min-content;
-  height: -moz-min-content;
+
   height: min-content;
   content: "";
 }
@@ -6346,8 +6347,7 @@ a.close.disabled {
 
   .modal-dialog-centered::before {
     height: calc(100vh - 3.5rem);
-    height: -webkit-min-content;
-    height: -moz-min-content;
+
     height: min-content;
   }
 
