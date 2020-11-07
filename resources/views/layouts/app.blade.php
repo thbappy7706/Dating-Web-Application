@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Pexcon Cart||A Category Store Based Application</title>
+    <title>Dating Web App</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -33,6 +33,13 @@
             font-weight: bold;
             height: 100vh;
             margin: 0;
+        }
+
+        .card-body-home{
+
+            color: black;
+
+
         }
 
 
@@ -105,7 +112,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right "   style="color: #2176bd;background-color: #2176bd">
-                                <a class="dropdown-item" style="color: greenyellow;background-color: #2176bd" href="{{ route('profile.user') }}">
+                                <a class="dropdown-item" style="color: greenyellow;background-color: #2176bd" href="{{route('profile.user')}} ">
 
                                     User Account
 

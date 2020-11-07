@@ -48,9 +48,9 @@
 
                             <div class="col-md-6">
                                 <select name="gender" id="" class="form-control">
-{{--                                    @foreach( config('enums.gender') as $key => $value)--}}
-{{--                                        <option value="{{ $key }}"> {{ $value }}</option>--}}
-{{--                                    @endforeach--}}
+                                    @foreach( config('gen.gender') as $key => $value)
+                                        <option value="{{ $key }}"> {{ $value }}</option>
+                                    @endforeach
                                 </select>
                                 @if ($errors->has('gender'))
                                     <span class="invalid-feedback" role="alert">
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
+                            <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">Birthdate</label>
 
                             <div class="col-md-6">
                                 <input type="date" class="form-control" name="date_of_birth">

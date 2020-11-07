@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\Console\Input\Input;
 
 class RegisterController extends Controller
 {
@@ -53,6 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'gender'=>'required', 'birthday'=>'required', 'image'=>'required',
         ]);
     }
 
@@ -64,10 +66,28 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+//        new $file
+        $file =null;
+
+        if (Input::file('image')->isValid()) {
+            $destinationPath = public_path('img');
+            $extension = Input::file('avatar')->getClientOriginalExtension();
+            $file = uniqid().'.'.$extension;
+            Input::file('image')->move($destinationPath, $file);
+        }
+
+
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'gender' => $data['gender'],
+            'image'=> $file,
+            'birthday'=>$data['birthday'],
+            'latitude' => $data['latitude'],
+            'longitude' => $data['longitude'],
+
         ]);
     }
 }
