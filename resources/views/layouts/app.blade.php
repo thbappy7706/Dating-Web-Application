@@ -61,14 +61,13 @@
             @guest
             @else
 
-                <a class="navbar-brand" style="color: white;font-size: medium; font-weight: bold; font-family: 'Mongolian Baiti'" href="">
-                    MENU
+
+                <a class="navbar-brand" style="color: white;   font-size: medium; font-weight: bold; font-family: 'Mongolian Baiti'" href="{{route('users.close')}}">
+
+                    Nearable User within 5 Km
                 </a>
 
 
-                <a class="navbar-brand" style="color: white;font-size: medium; font-weight: bold; font-family: 'Mongolian Baiti'" href=" ">
-                    MENU
-                </a>
 
 
 
@@ -142,6 +141,11 @@
     <main class="py-4">
         @yield('content')
     </main>
+    <script src="{{ asset('js/jquery.min.js') }}"> </script>
+    <script src="{{ asset('js/alertify.min.js') }}"> </script>
+    <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+    @yield('styles')
+    @yield('scripts')
 </div>
 
 

@@ -8,7 +8,7 @@
                 <div class="card-header text-center">REGISTRATION FORM</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
 
@@ -47,10 +47,11 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                             <div class="col-md-6">
-                                <select name="gender" id="" class="form-control">
-                                    @foreach( config('gen.gender') as $key => $value)
-                                        <option value="{{ $key }}"> {{ $value }}</option>
-                                    @endforeach
+                                <select class="form-control " name="gender">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+
                                 </select>
                                 @if ($errors->has('gender'))
                                     <span class="invalid-feedback" role="alert">
@@ -63,23 +64,23 @@
                             <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">Birthdate</label>
 
                             <div class="col-md-6">
-                                <input type="date" class="form-control" name="date_of_birth">
-                                @if ($errors->has('date_of_birth'))
+                                <input type="date" class="form-control" name="birth_date">
+                                @if ($errors->has('birth_date'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('date_of_birth') }}</strong>
+                                        <strong>{{ $errors->first('birth_date') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Photo') }}</label>
+                            <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Photo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="avatar" type="file" accept="image/x-png,image/gif,image/jpeg" class="form-control{{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar" required>
+                                <input id="image" type="file" accept="image/x-png,image/gif,image/jpeg" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" required>
 
-                                @if ($errors->has('avatar'))
+                                @if ($errors->has('image'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('avatar') }}</strong>
+                                        <strong>{{ $errors->first('image') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -104,6 +105,8 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <input type="hidden" id="latitude" name="latitude" value="0.00">
+                        <input type="hidden" id="longitude" name="longitude" value="0.00">
 
 
 
@@ -122,3 +125,37 @@
     </div>
 </div>
 @endsection
+
+
+@section('scripts')
+
+    <script>
+
+        $(document).ready( function(){
+            getLatitudeAndLongitude();
+        });
+        function getLatitudeAndLongitude(){
+            var location={
+                latitude:'',
+                longitude:''
+            };
+
+            if (navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
+            else{
+                latitudeAndLongitude.innerHTML="Geolocation is not supported by this browser.";
+            }
+
+            function showPosition(position){
+                location.latitude= position.coords.latitude;
+                location.longitude= position.coords.longitude;
+                console.log(position.coords.latitude);
+                console.log(position.coords.longitude);
+                $('#latitude').val(position.coords.latitude);
+                $('#longitude').val(position.coords.longitude);
+            }
+        }
+    </script>
+@stop
+

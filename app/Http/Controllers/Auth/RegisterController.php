@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Symfony\Component\Console\Input\Input;
+
 
 class RegisterController extends Controller
 {
@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'gender'=>'required', 'birthday'=>'required', 'image'=>'required',
+            'gender'=>'required', 'birth_date'=>'required', 'image'=>'required',
         ]);
     }
 
@@ -66,28 +66,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-//        new $file
-        $file =null;
 
-        if (Input::file('image')->isValid()) {
-            $destinationPath = public_path('img');
-            $extension = Input::file('avatar')->getClientOriginalExtension();
-            $file = uniqid().'.'.$extension;
-            Input::file('image')->move($destinationPath, $file);
-        }
-
-
+        $file = $data['image']->getClientOriginalExtension();
+        $file_name = time().rand(99,999).'image_profile.'.$file;
+        $file_path = $data['image']->move(public_path().'/users/image',$file_name);
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'gender' => $data['gender'],
-            'image'=> $file,
-            'birthday'=>$data['birthday'],
+            'birth_date'=>$data['birth_date'],
+            'image' => $file_path, // save full image path to database
             'latitude' => $data['latitude'],
             'longitude' => $data['longitude'],
 
         ]);
-    }
+
+
+
+        }
+
+
+
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,13 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//userlike
+Route::post('/react', [\App\Http\Controllers\UserlikeController::class,'index'])->name('user.react');
+
+//Close user
+
+Route::get('/close-users', [App\Http\Controllers\HomeController::class, 'closeUser'])->name('users.close');
+
 
 
 
@@ -34,6 +42,7 @@ Route::post('User/Update/Profile', [\App\Http\Controllers\ProfileController::cla
 
 Route::get('User/Password',[\App\Http\Controllers\ProfileController::class,'Password'])->name('change.password');
 Route::post('User/Update/Password', [\App\Http\Controllers\ProfileController::class,'PasswordUpdate'])->name('update.password');
+
 
 
 

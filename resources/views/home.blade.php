@@ -41,19 +41,24 @@
                                     <th>{{$i++}}</th>
                                     <td>{{$row->name}}</td>
                                     <td>{{$row->email}}</td>
-                                    <td>{{$row->image}}</td>
+
+                                    <td>
+{{--                                        <img src="{{asset($row->image)}}" style="height: 70px; width: 80px" alt=" Image">--}}
+                                        <img src="{{ !is_null($row->image) ?asset('img/'. $row->image) : asset('img/user.png')  }}" alt="image" class="img-fluid zoom-image">
+                                    </td>
+
                                     <td>{{$row->gender}}</td>
-                                    <td>{{$row->age}}</td>
+                                    <td>{{$row->age}} </td>
                                     <td>{{$row->created_at->diffForhumans()}}</td>
 
 
                                     <td>
-{{--                                        <button  data-action=" "--}}
-{{--                                                 type="button"--}}
-{{--                                                 class="btn btn-sm like-unlike btn-{{ Auth::user()->isLiked($row->id)? 'danger':'success' }}"--}}
-{{--                                                 data-id="{{ $row->id }}">--}}
-{{--                                            {{ Auth::user()->isLiked($row->id) ? 'Dislike':'Like' }}--}}
-{{--                                        </button>--}}
+                                        <button  data-action="{{route('user.react')}} "
+                                                 type="button"
+                                                 class="btn btn-sm like-unlike btn-{{ Auth::user()->isLiked($row->id)? 'danger':'success' }}"
+                                                 data-id="{{ $row->id }}">
+                                            {{ Auth::user()->isLiked($row->id) ? 'Dislike':'Like' }}
+                                        </button>
                                     </td>
 
 
@@ -73,4 +78,35 @@
         </div>
     </div>
 @endsection
+
+
+@section('scripts')
+    <script>
+        $(document).ready( function(){
+            $('.like-unlike').on('click', function(e){
+                e.preventDefault();
+                let url = $(this).attr('data-action');
+                let id = $(this).attr('data-id');
+                let data = {
+                    id :id
+                }
+                axios.post(url,data).then(function( response){
+
+                    alertify.success( response.data.is_like === true ? 'Liked' : 'Disliked');
+                    if(response.data.is_mutual === true){
+                        alertify.alert("It's a Match!");
+                    }
+                    console.log(response);
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 1000);
+                }).catch(function(error){
+
+                });
+            });
+
+        });
+    </script>
+@stop
+
 
