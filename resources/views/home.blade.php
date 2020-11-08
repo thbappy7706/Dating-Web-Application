@@ -53,12 +53,12 @@
 
 
                                     <td>
-                                        <button  data-action="{{route('user.react')}} "
-                                                 type="button"
-                                                 class="btn btn-sm like-unlike btn-{{ Auth::user()->isLiked($row->id)? 'danger':'success' }}"
-                                                 data-id="{{ $row->id }}">
-                                            {{ Auth::user()->isLiked($row->id) ? 'Dislike':'Like' }}
-                                        </button>
+{{--                                        <button  data-action="{{route('user.react')}} "--}}
+{{--                                                 type="button"--}}
+{{--                                                 class="btn btn-sm like-unlike btn-{{ Auth::user()->isLiked($row->id)? 'danger':'success' }}"--}}
+{{--                                                 data-id="{{ $row->id }}">--}}
+{{--                                            {{ Auth::user()->isLiked($row->id) ? 'Dislike':'Like' }}--}}
+{{--                                        </button>--}}
                                     </td>
 
 

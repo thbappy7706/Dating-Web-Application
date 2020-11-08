@@ -3,21 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="484363c7-e7a0-4413-a15d-2aca3a0c8aa1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LikemapController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Likemap.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/gen.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_07_060429_create_likemaps_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +176,8 @@
       <workItem from="1604680822630" duration="7445000" />
       <workItem from="1604723311908" duration="7287000" />
       <workItem from="1604741169958" duration="1034000" />
-      <workItem from="1604767620009" duration="13228000" />
+      <workItem from="1604767620009" duration="14268000" />
+      <workItem from="1604813159529" duration="1937000" />
     </task>
     <servers />
   </component>
@@ -210,10 +197,10 @@
       <screen x="0" y="0" width="1440" height="870" />
     </state>
     <state x="554" y="359" key="NewPhpFileDialog/0.0.1440.870/1440.0.1366.738@0.0.1440.870" timestamp="1604683525525" />
-    <state x="416" y="260" key="com.intellij.ide.util.TipDialog" timestamp="1604767621025">
+    <state x="416" y="260" key="com.intellij.ide.util.TipDialog" timestamp="1604813170631">
       <screen x="0" y="0" width="1440" height="870" />
     </state>
-    <state x="416" y="260" key="com.intellij.ide.util.TipDialog/0.0.1440.870/1440.0.1366.738@0.0.1440.870" timestamp="1604767621025" />
+    <state x="416" y="260" key="com.intellij.ide.util.TipDialog/0.0.1440.870/1440.0.1366.738@0.0.1440.870" timestamp="1604813170631" />
     <state x="1558" y="0" width="1143" height="684" maximized="true" key="dock-window-1" timestamp="1604660471461">
       <screen x="1440" y="0" width="1366" height="738" />
     </state>

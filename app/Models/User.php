@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Userlike;
+use App\Models\Userlike\Userlike;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
