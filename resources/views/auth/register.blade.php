@@ -3,17 +3,13 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="card">
-                <div class="card-header text-center">REGISTRATION FORM</div>
+                <div class="card-header">{{ __('Sign up') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Sign up') }}" enctype="multipart/form-data">
                         @csrf
-
-
-
-
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -47,11 +43,10 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-control " name="gender">
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
-
+                                <select name="gender" id="" class="form-control">
+                                    @foreach( config('enums.gender') as $key => $value)
+                                        <option value="{{ $key }}"> {{ $value }}</option>
+                                    @endforeach
                                 </select>
                                 @if ($errors->has('gender'))
                                     <span class="invalid-feedback" role="alert">
@@ -61,26 +56,26 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">Birthdate</label>
+                            <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
 
                             <div class="col-md-6">
-                                <input type="date" class="form-control" name="birth_date">
-                                @if ($errors->has('birth_date'))
+                                <input type="date" class="form-control" name="date_of_birth">
+                                @if ($errors->has('date_of_birth'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('birth_date') }}</strong>
+                                        <strong>{{ $errors->first('date_of_birth') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Photo') }}</label>
+                            <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Photo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="image" type="file" accept="image/x-png,image/gif,image/jpeg" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" required>
+                                <input id="avatar" type="file" accept="image/x-png,image/gif,image/jpeg" class="form-control{{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar" required>
 
-                                @if ($errors->has('image'))
+                                @if ($errors->has('avatar'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('image') }}</strong>
+                                        <strong>{{ $errors->first('avatar') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -107,13 +102,9 @@
                         </div>
                         <input type="hidden" id="latitude" name="latitude" value="0.00">
                         <input type="hidden" id="longitude" name="longitude" value="0.00">
-
-
-
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary form-submit">
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -124,21 +115,22 @@
         </div>
     </div>
 </div>
-@endsection
 
+@endsection
 
 @section('scripts')
 
     <script>
+        // $('.datepicker').datepicker();
 
-        $(document).ready( function(){
-            getLatitudeAndLongitude();
-        });
+            $(document).ready( function(){
+                getLatitudeAndLongitude();
+            });
         function getLatitudeAndLongitude(){
             var location={
-                latitude:'',
-                longitude:''
-            };
+                    latitude:'',
+                    longitude:''
+                };
 
             if (navigator.geolocation){
                 navigator.geolocation.getCurrentPosition(showPosition);

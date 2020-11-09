@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use App\User;
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -27,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/users';
 
     /**
      * Create a new controller instance.
@@ -38,17 +37,29 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
     protected function authenticated(Request $request, $user)
     {
         if(!session()->exists('location')){
             $location = [
-                'latitude' =>  $request->latitude,
-                'longitude' => $request->longitude
+              'latitude' =>  $request->latitude,
+              'longitude' => $request->longitude
             ];
             session()->put('location', $location);
         }
 
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    protected function loggedOut(Request $request)
+    {
+        if(session()->exists('location'))
+        {
+            session()->flash('location');
+        }
     }
 
 }

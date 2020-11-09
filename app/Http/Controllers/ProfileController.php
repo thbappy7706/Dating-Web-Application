@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -14,38 +14,38 @@ class ProfileController extends Controller
     public  function  index()
     {
 
-        return view('profile.index');
+        return view('admin.profile.index');
     }
 
 
-    public  function Update(Request $request)
-    {
+   public  function Update(Request $request)
+   {
 
-        $request->validate([
-            'name' => 'required|min:4',
-            'email' => 'required|email',
-
-
-        ]);
-        $id = Auth::user()->id;
-
-        User::find($id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-
-        ]);
-        return Redirect()->back()->with('success','Proflie  Updated');
+       $request->validate([
+           'name' => 'required|min:4',
+           'email' => 'required|email',
 
 
+       ]);
+       $id = Auth::user()->id;
 
-    }
+       User::find($id)->update([
+           'name' => $request->name,
+           'email' => $request->email,
+
+       ]);
+       return Redirect()->back()->with('success','Proflie  Updated');
 
 
-    // Password
+
+   }
+
+
+   // Password
     public  function Password()
     {
 
-        return view('profile.password');
+        return view('admin.profile.password');
 
     }
 

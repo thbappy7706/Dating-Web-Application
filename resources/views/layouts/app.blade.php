@@ -61,13 +61,13 @@
             @guest
             @else
 
+            <a class="navbar-brand" style="color: white;   font-size: medium; font-weight: bold; font-family: 'Mongolian Baiti'" href="{{route('near.users.list')}} ">
 
-                <a class="navbar-brand" style="color: white;   font-size: medium; font-weight: bold; font-family: 'Mongolian Baiti'" href="{{route('users.close')}}">
-
-                    Nearable User within 5 Km
-                </a>
+                Nearable User within 5 Km
+            </a>
 
 
+                 
 
 
 
@@ -111,7 +111,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right "   style="color: #2176bd;background-color: #2176bd">
-                                <a class="dropdown-item" style="color: greenyellow;background-color: #2176bd" href="{{route('profile.user')}} ">
+                                <a class="dropdown-item" style="color: greenyellow;background-color: #2176bd" href=" {{route('profile.user')}} ">
 
                                     User Account
 
@@ -141,11 +141,6 @@
     <main class="py-4">
         @yield('content')
     </main>
-    <script src="{{ asset('js/jquery.min.js') }}"> </script>
-    <script src="{{ asset('js/alertify.min.js') }}"> </script>
-    <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
-    @yield('styles')
-    @yield('scripts')
 </div>
 
 

@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\User;
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -30,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/users';
 
     /**
      * Create a new controller instance.
@@ -51,10 +49,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'gender'=>'required', 'birth_date'=>'required', 'image'=>'required',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+            'gender' => 'required',
+            'date_of_birth' => 'required',
+            'avatar' => 'required',
         ]);
     }
 
@@ -62,31 +62,28 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\Models\User
+     * @return \App\User
      */
     protected function create(array $data)
     {
+        $fileName = null;
 
-        $file = $data['image']->getClientOriginalExtension();
-        $file_name = time().rand(99,999).'image_profile.'.$file;
-        $file_path = $data['image']->move(public_path().'/users/image',$file_name);
+        if (Input::file('avatar')->isValid()) {
+            $destinationPath = public_path('img');
+            $extension = Input::file('avatar')->getClientOriginalExtension();
+            $fileName = uniqid().'.'.$extension;
+            Input::file('avatar')->move($destinationPath, $fileName);
+        }
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
             'gender' => $data['gender'],
-            'birth_date'=>$data['birth_date'],
-            'image' => $file_path, // save full image path to database
+            'avatar' => $fileName,
+            'date_of_birth' => $data['date_of_birth'],
             'latitude' => $data['latitude'],
             'longitude' => $data['longitude'],
-
+            'password' => bcrypt($data['password']),
         ]);
-
-
-
-        }
-
-
-
+    }
 }

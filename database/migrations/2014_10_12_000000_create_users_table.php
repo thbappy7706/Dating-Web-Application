@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateUsersTable extends Migration
 {
@@ -17,14 +17,12 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('gender');
             $table->string('password');
-            $table->date('birth_date') ;
-            $table->string('image');
-//            $table->float('latitude');
+            $table->date('date_of_birth');
+            $table->string('avatar')->nullable();
             $table->double('latitude');
             $table->double('longitude');
-            $table->timestamp('email_verified_at')->nullable();
+            $table->enum('gender',array_keys(config('enums.gender')))->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
